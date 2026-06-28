@@ -38,10 +38,9 @@
   .btn-white:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.18)}
 
   /* nav */
-  header.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:.3s}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;background:rgba(255,255,255,.7);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:.3s}
-  header.nav.scrolled .nav-inner{background:rgba(255,255,255,.92);border-bottom-color:var(--line);box-shadow:0 4px 20px rgba(15,23,42,.05)}
-  .nav-pad{padding:0 24px;max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:100%}
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:background .3s,border-color .3s,box-shadow .3s}
+  header.nav.scrolled{background:rgba(255,255,255,.93);border-bottom-color:var(--line);box-shadow:0 4px 20px rgba(15,23,42,.05)}
+  .nav-pad{max-width:1160px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
   .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:21px;letter-spacing:-.02em}
   .logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 6px 16px rgba(79,70,229,.4)}
   .logo b span{color:var(--brand)}
@@ -203,14 +202,26 @@
   }
   @media(max-width:680px){
     .nav-links{display:none}
-    .nav-cta .btn-ghost{display:none}
+    .nav-cta .btn{display:none}          /* solo logo + hamburguesa en móvil */
+    .nav-cta{gap:0}
     .menu-btn{display:inline-flex}
-    .prob-grid,.feat-grid,.roles-grid,.price-grid,.steps,.stats-row{grid-template-columns:1fr}
+    .prob-grid,.feat-grid,.roles-grid,.price-grid,.steps{grid-template-columns:1fr}
+    .stats-row{grid-template-columns:repeat(2,1fr);gap:28px 16px}
     .plan.pop{transform:none}.plan.pop:hover{transform:translateY(-5px)}
     .pad{padding:64px 0}
-    .hero{padding:130px 0 60px}
-    .cta{padding:52px 24px}
+    .hero{padding:120px 0 56px;text-align:center}
+    .hero-actions,.hero-trust{justify-content:center}
+    .pill{margin-left:auto;margin-right:auto}
+    .hero p.lead{margin-left:auto;margin-right:auto}
+    .cta{padding:52px 22px}
+    .phone{width:260px;height:540px}
+    .toast-mock{right:4px;top:62px;width:208px}
     .mobile-menu.open{display:flex}
+  }
+  @media(max-width:380px){
+    .stats-row{grid-template-columns:1fr}
+    .phone{width:236px;height:492px}
+    .toast-mock{width:190px;right:0}
   }
   .mobile-menu{display:none;flex-direction:column;gap:4px;position:fixed;top:72px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 24px;z-index:99;box-shadow:var(--shadow)}
   .mobile-menu a{padding:12px 8px;font-weight:600;color:var(--ink);border-radius:8px}
@@ -222,7 +233,7 @@
 
 <!-- NAV -->
 <header class="nav" id="nav">
-  <div class="nav-inner"><div class="nav-pad">
+  <div class="nav-pad">
     <a href="#" class="logo"><span class="mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><b>Pack<span>Track</span></b></a>
     <nav class="nav-links">
       <a href="#features">Funciones</a>
@@ -236,7 +247,7 @@
       <a href="#cta" class="btn btn-primary">Solicitar demo</a>
       <button class="menu-btn" id="menuBtn" aria-label="Menú"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
     </div>
-  </div></div>
+  </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#features">Funciones</a><a href="#how">Cómo funciona</a><a href="#roles">Para quién</a><a href="#pricing">Precios</a><a href="#faq">FAQ</a>
@@ -296,10 +307,10 @@
 <!-- STATS STRIP -->
 <section class="strip">
   <div class="wrap stats-row">
-    <div class="stat reveal"><div class="num" data-count="30">0</div><div class="lab">Segundos para registrar</div></div>
-    <div class="stat reveal d1"><div class="num" data-count="100">0</div><div class="lab">% de trazabilidad</div></div>
-    <div class="stat reveal d2"><div class="num" data-count="0">0</div><div class="lab">Paquetes perdidos</div></div>
-    <div class="stat reveal d3"><div class="num" data-count="3">0</div><div class="lab">Roles: guardia, residente, admin</div></div>
+    <div class="stat reveal"><div class="num" data-count="3">0</div><div class="lab">Clicks para registrar</div></div>
+    <div class="stat reveal d1"><div class="num" data-count="30">0</div><div class="lab">Segundos por paquete</div></div>
+    <div class="stat reveal d2"><div class="num" data-count="100">0</div><div class="lab">% de trazabilidad</div></div>
+    <div class="stat reveal d3"><div class="num" data-count="0">0</div><div class="lab">Paquetes perdidos</div></div>
   </div>
 </section>
 
@@ -328,7 +339,7 @@
       <p>Diseñada para guardias que no tienen tiempo y residentes que quieren su paquete sin complicarse.</p>
     </div>
     <div class="feat-grid">
-      <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><h3>Registro con foto y OCR</h3><p>El guardia toma una foto de la etiqueta. El sistema lee el destinatario y lo identifica por torre y departamento, automáticamente.</p></div>
+      <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><h3>Registra en 3 clicks</h3><p>Foto a la etiqueta, el OCR identifica al residente por su departamento y listo. Tres toques y el paquete queda registrado — sin escribir nombres ni buscar en listas.</p></div>
       <div class="feat reveal d1"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div><h3>Notificación instantánea</h3><p>En cuanto se registra, el residente recibe una alerta en su teléfono. Se acabó el "no me avisaron".</p></div>
       <div class="feat reveal d2"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>Código de retiro seguro</h3><p>Solo el residente ve su código. El guardia lo pide al entregar — nadie puede llevarse un paquete ajeno.</p></div>
       <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg></div><h3>Historial completo</h3><p>Cada paquete queda registrado: quién lo recibió, quién lo entregó y cuándo. Trazabilidad total y auditable.</p></div>
